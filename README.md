@@ -43,3 +43,7 @@ $ mkdir model/
 
 **Step 3.** 
 Move the data you downloaded to the data directory you just created.
+
+
+**Step 4.**
+Try training your own models.
