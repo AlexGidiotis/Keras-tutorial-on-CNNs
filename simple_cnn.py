@@ -4,7 +4,7 @@ import numpy as np
 
 from keras.datasets import cifar10
 from keras.models import Model
-from keras.layers import Dense, Dropout, Flatten, Convolution2D, MaxPooling2D
+from keras.layers import Dense, Dropout, Flatten, Convolution2D, MaxPooling2D, Input
 from keras.utils import np_utils
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 
@@ -14,24 +14,25 @@ epochs = 100
 STAMP = 'simple_cnn'
 
 
-(X_train, y_train), (X_val, y_val) = cifar10.load_data()
+(x_train, y_train), (x_val, y_val) = cifar10.load_data()
 print('x_train shape:', x_train.shape)
 print(x_train.shape[0], 'train samples')
-print(x_test.shape[0], 'test samples')
+print(x_val.shape[0], 'test samples')
 
-Y_train = np_utils.to_categorical(y_train, num_classes)
-Y_val = np_utils.to_categorical(y_val, num_classes)
+y_train = np_utils.to_categorical(y_train, num_classes)
+y_val = np_utils.to_categorical(y_val, num_classes)
 
-X_train = X_train.astype('float32')
-X_val = X_val.astype('float32')
-X_train /= 255
-X_val /= 255
+x_train = x_train.astype('float32')
+x_val = x_val.astype('float32')
+x_train /= 255
+x_val /= 255
+
+input_layer = Input(shape=(x_train.shape[1:]))
 
 #Block 1
 conv1 = Convolution2D(32,(7,7),
 	padding='same',
-	input_shape=X_train.shape[1:],
-	activation='relu')
+	activation='relu')(input_layer)
 conv2 = Convolution2D(32,(7,7),
 	padding='same',
 	activation='relu')(conv1)
@@ -66,7 +67,7 @@ drop4 = Dropout(0.5)(dense1)
 output = Dense(num_classes,
 	activation='softmax')(drop4)
 
-model = Model(inputs=conv1, outputs=output)
+model = Model(inputs=input_layer, outputs=output)
 
 
 model.summary()
@@ -92,11 +93,11 @@ start_time = time.time()
 model.fit(x_train, y_train,
 	batch_size=batch_size,
 	epochs=epochs,
-	validation_data=(x_test, y_test),
+	validation_data=(x_val, y_val),
 	shuffle=True,
 	callbacks=[early_stopping, model_checkpoint])
 
-score = model.evaluate(X_val,Y_val,verbose=0)
+score = model.evaluate(x_val,y_val,verbose=0)
 end_time = time.time()
 print("--- Training time: %s seconds ---" % (end_time - start_time))
 print('Test score:', score[0])

@@ -7,6 +7,7 @@ from keras.layers import Dropout, Flatten, Dense
 from keras.datasets import cifar10
 from keras.optimizers import Adam
 import keras
+
 from sklearn.model_selection import train_test_split
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 
@@ -32,8 +33,8 @@ def load_celeba(num_batches):
 	X_data = []
 	bboxes = []
 	for i in range(num_batches):
-		X_data_batch = np.load('data/celebA_images'+str(i)+'.npy')
-		bboxes_batch = np.load('data/celebA_bboxes'+str(i)+'.npy')
+		X_data_batch = np.load('data/images/celebA_images'+str(i)+'.npy')
+		bboxes_batch = np.load('data/bboxes/celebA_bboxes'+str(i)+'.npy')
 		if bboxes_batch.shape[0] == 0:
 			continue
 		X_data.append(X_data_batch)

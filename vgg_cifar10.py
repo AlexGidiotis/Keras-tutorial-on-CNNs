@@ -109,7 +109,7 @@ with open('model/' + STAMP + ".json", "w") as json_file:
     json_file.write(model_json)
 
 early_stopping =EarlyStopping(monitor='val_loss',
-    patience=10)
+    patience=20)
 
 bst_model_path = 'model/' + STAMP + '.h5'
 model_checkpoint = ModelCheckpoint(bst_model_path,
