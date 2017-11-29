@@ -69,7 +69,7 @@ for c,(img, x_img, lab) in enumerate(zip(x_val_orig, x_val, y_val)):
 		
 
 	else:
-		x_1,y_1,width,height = pred.astype(int)
+		x_1,y_1,width,height = pred[0].astype(int)
 		predicted_roi = img[y_1:y_1+height,x_1:x_1+width,:]
 		cv2.rectangle(img,(x_1,y_1),(x_1+width,y_1+height),(0,255,0),3)
 		cv2.imshow('image',img)
