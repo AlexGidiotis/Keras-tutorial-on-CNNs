@@ -34,7 +34,7 @@ $ cd Keras-tutorial-on-CNNs
 ```
 
 **Step 2.** 
-Download [celebA data]()
+Download [celebA data](https://www.dropbox.com/sh/hx19bwxdpn8xv33/AABkCRUPwfFi0xqcvXjMO8GFa?dl=0)
 
 ```
 $ mkdir data/
