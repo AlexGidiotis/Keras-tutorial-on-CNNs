@@ -61,4 +61,4 @@ Try training your own models.
 
 - The CNN with the VGG16 pre-trained layers achieves approximately 91% accuracy on the cifar10 data.
 
-- The CNN regressor achieves approximately 187 Mean Squared Error on the celebA data. 
+- The CNN regressor achieves approximately 187 Mean Squared Error on the celebA data after 28 epochs. 
