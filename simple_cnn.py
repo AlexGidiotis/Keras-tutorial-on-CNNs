@@ -13,7 +13,6 @@ num_classes = 10
 epochs = 100
 STAMP = 'simple_cnn'
 
-
 (x_train, y_train), (x_val, y_val) = cifar10.load_data()
 print('x_train shape:', x_train.shape)
 print(x_train.shape[0], 'train samples')

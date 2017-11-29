@@ -128,16 +128,3 @@ model.fit(x_train, y_train,
 	shuffle=True,
 	callbacks=[early_stopping, model_checkpoint])
 
-'''
-preds = model.predict(x_test)
-
-for c,(img, pred, lab) in enumerate(zip(x_test_eval, preds, y_test)):
-	print pred, lab
-	x_1,y_1,width,height = pred.astype(int)
-	predicted_roi = img[y_1:y_1+height,x_1:x_1+width,:]
-	cv2.imshow('image',img)
-	cv2.imshow('roi',predicted_roi)
-	cv2.waitKey(0)
-	cv2.destroyAllWindows()
-	break
-'''
