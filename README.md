@@ -7,11 +7,11 @@ This is the code for the workshop "Implementing CNNs with keras and tensorflow".
 
 Includes 3 different CNN architectures:
 
-1) ** A simple CNN for image classification **
+1) **A simple CNN for image classification**
 
-2) ** A CNN that uses the pretrained layers from VGG16 for image classification **
+2) **A CNN that uses the pretrained layers from VGG16 for image classification**
 
-3) ** A CNN regressor that uses the pretrained layers from VGG16 for the task of face detection **
+3) **A CNN regressor that uses the pretrained layers from VGG16 for the task of face detection**
 
 ## Requirements
 
