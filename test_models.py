@@ -40,9 +40,8 @@ model.load_weights('model/' + STAMP + '.h5')
 print("Loaded model from disk")
 
 
-for c,(img, pred, lab) in enumerate(zip(x_val_orig, preds, y_val)):
-	preds = model.predict(x_val,
-		batch_size=2)
+for c,(img, x_img, lab) in enumerate(zip(x_val_orig, x_val, y_val)):
+	preds = model.predict(x_img)
 	if model_selection == 'simple':
 		pred = np.argmax(pred)
 		img = cv2.resize(img, (150,150))
