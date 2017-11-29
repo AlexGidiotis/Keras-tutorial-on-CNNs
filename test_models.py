@@ -39,7 +39,8 @@ model = model_from_json(loaded_model_json)
 model.load_weights('model/' + STAMP + '.h5')
 print("Loaded model from disk")
 
-preds = model.predict(x_val)
+preds = model.predict(x_val,
+	batch_size=2)
 
 for c,(img, pred, lab) in enumerate(zip(x_val_orig, preds, y_val)):
 	if model_selection == 'simple':
@@ -49,7 +50,7 @@ for c,(img, pred, lab) in enumerate(zip(x_val_orig, preds, y_val)):
 		print('Original class: %d' % lab)
 		cv2.imshow('image',img)
 		k = cv2.waitKey(0)
-		if k == -1:
+		if k == ord('q'):
 			cv2.destroyAllWindows()
 			break
 		
@@ -62,7 +63,7 @@ for c,(img, pred, lab) in enumerate(zip(x_val_orig, preds, y_val)):
 		print('Original class: %d' % lab)
 		cv2.imshow('image',img)
 		k = cv2.waitKey(0)
-		if k == -1:
+		if k == ord('q'):
 			cv2.destroyAllWindows()
 			break
 		
@@ -73,7 +74,7 @@ for c,(img, pred, lab) in enumerate(zip(x_val_orig, preds, y_val)):
 		cv2.rectangle(img,(x_1,y_1),(x_1+width,y_1+height),(0,255,0),3)
 		cv2.imshow('image',img)
 		k = cv2.waitKey(0)
-		if k == -1:
+		if k == ord('q'):
 			cv2.destroyAllWindows()
 			break
 		
