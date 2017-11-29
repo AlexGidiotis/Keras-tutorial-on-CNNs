@@ -38,20 +38,27 @@ Download [celebA data]()
 
 ```
 $ mkdir data/
-$ mkdir model/
 ```
 
 **Step 3.** 
 Move the data you downloaded to the data directory you just created.
 
 
-**Step 4.**
+**Step 4.** 
+Created a directory to save the trained models.
+
+```
+$ mkdir model/
+```
+
+
+**Step 5.**
 Try training your own models.
 
 ## Results ##
 
-- The simple CNN achieves approximately 70% accuracy on the cifar10 data. 
+- The simple CNN achieves approximately 73% accuracy on the cifar10 data after 43 epochs. 
 
-- The CNN with the VGG16 pre-trained layers achieves approximately 90% accuracy on the cifar10 data.
+- The CNN with the VGG16 pre-trained layers achieves approximately 91% accuracy on the cifar10 data.
 
 - The CNN regressor achieves approximately 187 Mean Squared Error on the celebA data. 
