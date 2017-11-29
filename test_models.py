@@ -44,27 +44,36 @@ preds = model.predict(x_val)
 for c,(img, pred, lab) in enumerate(zip(x_val_orig, preds, y_val)):
 	if model_selection == 'simple':
 		pred = np.argmax(pred)
+		img = cv2.resize(img, (150,150))
 		print('Predicted class: %d' % pred)
 		print('Original class: %d' % lab)
 		cv2.imshow('image',img)
-		cv2.waitKey(0)
-		cv2.destroyAllWindows()
-		break
+		k = cv2.waitKey(0)
+		if k == -1:
+			cv2.destroyAllWindows()
+			break
+		
 
 	elif model_selection == 'vgg_class':
 		pred = np.argmax(pred)
-		cv2.imshow('image',img)
+		lab = np.argmax(lab)
+		img = cv2.resize(img, (150,150))
 		print('Predicted class: %d' % pred)
 		print('Original class: %d' % lab)
-		cv2.waitKey(0)
-		cv2.destroyAllWindows()
-		break
+		cv2.imshow('image',img)
+		k = cv2.waitKey(0)
+		if k == -1:
+			cv2.destroyAllWindows()
+			break
+		
 
-	elif model_selection == 'vgg_regr':
+	else:
 		x_1,y_1,width,height = pred.astype(int)
 		predicted_roi = img[y_1:y_1+height,x_1:x_1+width,:]
+		cv2.rectangle(img,(x_1,y_1),(x_1+width,y_1+height),(0,255,0),3)
 		cv2.imshow('image',img)
-		cv2.imshow('roi',predicted_roi)
-		cv2.waitKey(0)
-		cv2.destroyAllWindows()
-		break
+		k = cv2.waitKey(0)
+		if k == -1:
+			cv2.destroyAllWindows()
+			break
+		

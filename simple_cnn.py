@@ -74,6 +74,10 @@ model.compile(loss='categorical_crossentropy',
 	optimizer='adam',
 	metrics=['accuracy'])
 
+model_json = model.to_json()
+with open('model/' + STAMP + ".json", "w") as json_file:
+    json_file.write(model_json)
+    
 early_stopping = EarlyStopping(monitor='val_loss',
 	patience=10,
 	verbose=1)

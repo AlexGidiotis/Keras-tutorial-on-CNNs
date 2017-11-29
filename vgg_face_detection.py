@@ -90,41 +90,41 @@ def build_model(img_width,
 
 	return model
 
+if __name__ == '__main__':
+	x_train, y_train, x_test, y_test = load_celeba(num_batches=3)
+	print('x_train shape:', x_train.shape)
+	print(x_train.shape[0], 'train samples')
+	print(x_test.shape[0], 'test samples')
 
-x_train, y_train, x_test, y_test = load_celeba(num_batches=3)
-print('x_train shape:', x_train.shape)
-print(x_train.shape[0], 'train samples')
-print(x_test.shape[0], 'test samples')
+	x_train = x_train.astype('float32')
+	x_test = x_test.astype('float32')
+	x_train /= 255
+	x_test /= 255
 
-x_train = x_train.astype('float32')
-x_test = x_test.astype('float32')
-x_train /= 255
-x_test /= 255
+	img_width, img_height, channels = x_train.shape[1],x_train.shape[2],x_train.shape[3]
 
-img_width, img_height, channels = x_train.shape[1],x_train.shape[2],x_train.shape[3]
+	model = build_model(img_width=img_width,
+		img_height=img_height,
+		channels=channels,
+		lr=1e-5)
 
-model = build_model(img_width=img_width,
-	img_height=img_height,
-	channels=channels,
-	lr=1e-5)
+	model_json = model.to_json()
+	with open('model/' + STAMP + ".json", "w") as json_file:
+	    json_file.write(model_json)
 
-model_json = model.to_json()
-with open('model/' + STAMP + ".json", "w") as json_file:
-    json_file.write(model_json)
+	early_stopping =EarlyStopping(monitor='val_loss',
+	    patience=10)
+	bst_model_path = 'model/' + STAMP + '.h5'
+	model_checkpoint = ModelCheckpoint(bst_model_path,
+	    monitor='val_loss',
+	    verbose=1,
+	    save_best_only=True,
+	    save_weights_only=True)
 
-early_stopping =EarlyStopping(monitor='val_loss',
-    patience=10)
-bst_model_path = 'model/' + STAMP + '.h5'
-model_checkpoint = ModelCheckpoint(bst_model_path,
-    monitor='val_loss',
-    verbose=1,
-    save_best_only=True,
-    save_weights_only=True)
-
-model.fit(x_train, y_train,
-	batch_size=batch_size,
-	epochs=epochs,
-	validation_data=(x_test, y_test),
-	shuffle=True,
-	callbacks=[early_stopping, model_checkpoint])
+	model.fit(x_train, y_train,
+		batch_size=batch_size,
+		epochs=epochs,
+		validation_data=(x_test, y_test),
+		shuffle=True,
+		callbacks=[early_stopping, model_checkpoint])
 
