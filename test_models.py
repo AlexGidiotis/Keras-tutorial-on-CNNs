@@ -41,6 +41,7 @@ print("Loaded model from disk")
 
 
 for c,(img, x_img, lab) in enumerate(zip(x_val_orig, x_val, y_val)):
+	x_img = x_img.reshape(1,x_img.shape[0],x_img.shape[1],x_img.shape[2])
 	preds = model.predict(x_img)
 	if model_selection == 'simple':
 		pred = np.argmax(pred)
