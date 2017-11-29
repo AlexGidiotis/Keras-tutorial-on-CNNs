@@ -47,3 +47,11 @@ Move the data you downloaded to the data directory you just created.
 
 **Step 4.**
 Try training your own models.
+
+## Results ##
+
+- The simple CNN achieves approximately 70% accuracy on the cifar10 data. 
+
+- The CNN with the VGG16 pre-trained layers achieves approximately 90% accuracy on the cifar10 data.
+
+- The CNN regressor achieves approximately 187 Mean Squared Error on the celebA data. 
