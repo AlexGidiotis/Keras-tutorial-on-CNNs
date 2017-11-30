@@ -57,7 +57,7 @@ Try training your own models.
 
 ## Results ##
 
-- The simple CNN achieves approximately 73% accuracy on the cifar10 data after 43 epochs. 
+- The simple CNN achieves approximately 80% accuracy on the cifar10 data after 50 epochs. 
 
 - The CNN with the VGG16 pre-trained layers achieves approximately 91% accuracy on the cifar10 data.
 
