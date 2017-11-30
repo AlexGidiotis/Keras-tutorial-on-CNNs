@@ -5,6 +5,7 @@ import numpy as np
 from keras.datasets import cifar10
 from keras.models import Model
 from keras.layers import Dense, Dropout, Flatten, Convolution2D, MaxPooling2D, Input
+from keras.optimizers import Adam
 from keras.utils import np_utils
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 
@@ -29,10 +30,10 @@ x_val /= 255
 input_layer = Input(shape=(x_train.shape[1:]))
 
 #Block 1
-conv1 = Convolution2D(32,(7,7),
+conv1 = Convolution2D(32,(3,3),
 	padding='same',
 	activation='relu')(input_layer)
-conv2 = Convolution2D(32,(7,7),
+conv2 = Convolution2D(32,(3,3),
 	padding='same',
 	activation='relu')(conv1)
 pool1 = MaxPooling2D(pool_size=(2,2))(conv2)
@@ -70,8 +71,12 @@ model = Model(inputs=input_layer, outputs=output)
 
 
 model.summary()
+
+adam = Adam(lr=0.0001,
+	decay=1e-6)
+
 model.compile(loss='categorical_crossentropy',
-	optimizer='adam',
+	optimizer=adam,
 	metrics=['accuracy'])
 
 model_json = model.to_json()
