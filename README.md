@@ -1,5 +1,10 @@
 # Keras-tutorial-on-CNNs
-Tutorial on how to implement a simple CNN for image classification and face detection.
+We're going to build 3 image CNNs using just Tensorflow and Keras. The first is 
+a simple classifier for images that will show you the basics of the keras api and how to build a
+simple CNN. The second is a classifier that uses pre-trained VGG16 
+convolutional layers and fine tunes them for a different classification task. The third model is a CNN regressor
+taht also uses pre-trained VGG16 layers but fine tunes them for the task of face detection.
+The goal for this is to fully understand how a Convolutional Neural Network works. 
 
 ## Overview ##
 
