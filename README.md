@@ -27,6 +27,10 @@ Includes 3 different CNN architectures:
 - [Tensorflow](https://github.com/tensorflow/tensorflow)
 - [Keras](https://github.com/fchollet/keras)
 
+Run `pip install -r requirements.txt` to install the requirements. 
+
+Install pip [here](https://pip.pypa.io/en/stable/). 
+
 ## Usage
 
 ### Training
